@@ -106,9 +106,9 @@ def callback():
     # 'hd': 'ousd.org'
     # }
 
-    if userinfo_response.json().get("hd") != "ousd.org":
-        flash("You must have an ousd.org email account to access this site.")
-        return "You must have an ousd.org email account to access this site.", 400
+    # if userinfo_response.json().get("hd") != "ousd.org":
+    #     flash("You must have an ousd.org email account to access this site.")
+    #     return "You must have an ousd.org email account to access this site.", 400
 
     # We want to make sure their email is verified.
     # The user authenticated with Google, authorized our
@@ -119,7 +119,7 @@ def callback():
         gprofile_pic = userinfo_response.json()["picture"]
         gname = userinfo_response.json()["name"]
         gfname = userinfo_response.json()["given_name"]
-        glname = userinfo_response.json()["family_name"]
+        # glname = userinfo_response.json()["family_name"]
     else:
         return "User email not available or not verified by Google.", 400
 
@@ -128,27 +128,27 @@ def callback():
         thisUser=User.objects.get(email=gmail)
     # if the user does not exist, create them and make sure they are ousd.org
     except mongoengine.errors.DoesNotExist:
-        if userinfo_response.json().get("hd") == "ousd.org":
-            thisUser = User(
-                gid=gid, 
-                gname=gname, 
-                email=gmail, 
-                gprofile_pic=gprofile_pic,
-                fname = gfname,
-                lname = glname
-            )
-            thisUser.save()
-            thisUser.reload()
-        else:
-            flash("You must have an ousd.org email to login to this site.")
-            return redirect(url_for('index'))
+        # if userinfo_response.json().get("hd") == "ousd.org":
+        thisUser = User(
+            gid=gid, 
+            gname=gname, 
+            email=gmail, 
+            gprofile_pic=gprofile_pic,
+            fname = gfname,
+            # lname = glname
+        )
+        thisUser.save()
+        thisUser.reload()
+        # else:
+        #     flash("You must have an ousd.org email to login to this site.")
+        #     return redirect(url_for('index'))
     else:
         thisUser.update(
             gid=gid, 
             gname=gname, 
             gprofile_pic=gprofile_pic,
             fname = gfname,
-            lname = glname
+            # lname = glname
         )
     thisUser.reload()
 

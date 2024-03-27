@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% if dogs %}
+    {{moment(dogs.create_date).calendar()}} by {{dogs.author.fname}} {{dogs.author.lname}} 
+    {% if dogs.modifydate %}
+        modified {{moment(dogs.modifydate).calendar()}}
+    {% endif %}
+    <br>
+    {% if dogs.author == current_user %}
+        <a data-toggle="tooltip" data-placement="top" title="Delete Dogs" href="/dogs/delete/{{dogs.id}}">
+            <img width="40" class="bottom-image" src="/static/delete.png">
+        </a>
+        <a data-toggle="tooltip" data-placement="top" title="Edit Dogs" href="/dogs/edit/{{dogs.id}}">
+            <img width="40" class="bottom-image" src="/static/edit.png">
+        </a>
+    {% endif %}
+
+    <h1 class="display-5">{{dogs.subject}}</h1>
+    <p class="fs-3 text-break">
+        {% if dog.author.image %}
+            <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(dogs.author.image.read())}}">
+        {% endif %}
+            {{dogs.content}} <br>
+            {{dogs.tag}}
+
+    </p>
+{% else %}
+    No dogs Here
+{% endif %}
+
+{% endblock %}
