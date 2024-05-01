@@ -60,6 +60,12 @@
             </div>
             <div class="col">
                 {% if loop.index == 1 %}
+                    <h3>End</h3>
+                {% endif %}
+                {{sleep.goal}}
+            </div>
+            <div class="col">
+                {% if loop.index == 1 %}
                     <h3>Rating</h3>
                 {% endif %}
                 {{sleep.rating}}

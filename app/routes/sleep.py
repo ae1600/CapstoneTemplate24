@@ -42,16 +42,15 @@ def sleepNew():
     if form.validate_on_submit():
         startDT = dt.datetime.combine(form.sleep_date.data, form.starttime.data)
         endDT = dt.datetime.combine(form.wake_date.data, form.endtime.data)
+        goal = dt.datetime.combine(form.wake_date.data, form.endtime.data)
         diff = startDT - endDT
         hours = diff.seconds/60/60
         newSleep = Sleep(
             hours = hours,
             sleeper = current_user,
-            rating = form.rating.data,
+            goal = goal,
             start = startDT,
             end = endDT,
-            feel = form.feel.data,
-            minstosleep = form.minstosleep.data,
         )
         newSleep.save()
         return redirect(url_for("sleep",sleepId=newSleep.id))
@@ -87,7 +86,6 @@ def sleepEdit(sleepId):
             start = startDT,
             end = endDT,
             feel = form.feel.data,
-            minstosleep = form.minstosleep.data
         )
         return redirect(url_for("sleep",sleepId=editSleep.id))
     
@@ -97,7 +95,6 @@ def sleepEdit(sleepId):
     form.endtime.process_data(editSleep.end.time())
     form.rating.process_data(editSleep.rating)
     form.feel.process_data(editSleep.feel)
-    form.minstosleep.data = editSleep.minstosleep
     return render_template("sleepform.html",form=form)
 
 @app.route('/sleep/<sleepId>')

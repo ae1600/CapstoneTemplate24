@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
   <div class="container-fluid mb-3">
-    <a class="navbar-brand .navbar-text display-5 text-black font-weight-bold fw-bold" href="/">Adolscent Sleep Tracker</a>
+    <a class="navbar-brand .navbar-text display-5 text-black font-weight-bold fw-bold" href="/">Fix Your Sleep Schedule</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,7 +13,7 @@
           <a class="nav-link" href="/sleep/new">New Sleep</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/overview">Overview</a>
+          <a class="nav-link" href="/aboutus">About Us</a>
         </li>
         <li class='nav-item'>
           <a class="nav-link" href="/blogs">User Feedback</a>
@@ -50,6 +50,3 @@
     </div>
   </div>
 </nav>  
-@app.route('/aboutus')
-def aboutus():
-    return render_template('aboutus.html')

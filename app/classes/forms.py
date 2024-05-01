@@ -26,13 +26,11 @@ class ConsentForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class SleepForm(FlaskForm):
-    rating = SelectField("How would you rate your sleep: 5 is great, 1 is poor", choices=[(None,'---'),(1,1),(2,2),(3,3),(4,4),(5,5)], validators=[DataRequired()])
-    starttime = TimeField("Start Time")   
-    endtime = TimeField("End Time")   
-    feel = SelectField("How did you feel when you woke up: 5 is great, 1 is poor", choices=[(None,'---'),(1,1),(2,2),(3,3),(4,4),(5,5)], validators=[DataRequired()])
+    starttime = TimeField("What Time Did You SLeep?")   
+    endtime = TimeField("What Time Did You Wake Up?")   
+    goal = TimeField("What was your goal wake up time?")
     sleep_date = DateField("What date did you go to sleep")
     wake_date = DateField("What date did you wake up")
-    minstosleep = IntegerField("How many minutes did it take you to fall asleep?", validators=[NumberRange(min=0,max=180, message="Enter a number between 0 and 180.")])
     submit = SubmitField("Submit")
 
 class BlogForm(FlaskForm):

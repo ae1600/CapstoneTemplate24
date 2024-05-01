@@ -30,6 +30,14 @@
                 {% endfor %}
             </p>
             <p>
+                {{ form.goal.label }} <br>
+                {{ form.goal(size=6) }}
+                <!--List the errors for this field-->
+                {% for error in form.endtime.errors %}
+                   <br> <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
                 {{ form.endtime.label }} <br>
                 {{ form.endtime(size=6) }}
                 <!--List the errors for this field-->
@@ -37,33 +45,11 @@
                    <br> <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
-            <p>
-                {{ form.rating.label }} <br>
-                {{ form.rating() }}
-                <!--List the errors for this field-->
-                {% for error in form.rating.errors %}
-                   <br> <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.feel.label }} <br>
-                {{ form.feel() }}
-                <!--List the errors for this field-->
-                {% for error in form.feel.errors %}
-                   <br> <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.minstosleep.label }} <br>
-                {{ form.minstosleep(size=3) }}
-                <!--List the errors for this field-->
-                {% for error in form.minstosleep.errors %}
-                   <br> <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
+
+ 
             <p>
                 {{form.submit()}}
             </p>
         </form>
-        
+        <img src="https://gifdb.com/images/high/cute-dog-sleep-well-exrij6pz8r18ag3d.gif" class="rounded float-start" width = "200" hieght= "200" alt="...">
 {% endblock %}
